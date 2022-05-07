@@ -5,10 +5,10 @@
   "main": "index.html",
   "scripts": {
     "dev": "vite",
-    "build": "yarn build-api && vite build",
+    "build": "vite build",
     "server": "PORT=3001 npx y-websocket",
     "preview": "vite preview",
-    "deploy": "yarn sls deploy"
+    "start": "yarn server"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.3",

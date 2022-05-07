@@ -1,0 +1,9 @@
+steps:
+  - name: node:14-slim
+    entrypoint: yarn
+    args: ["install"]
+  - name: node:14-slim
+    entrypoint: yarn
+    args: ["build"]
+  - name: gcr.io/cloud-builders/gcloud
+    args: ["app", "deploy", "app.yaml", "--project=$PROJECT_ID", "--quiet"]

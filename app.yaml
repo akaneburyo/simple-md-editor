@@ -1,0 +1,24 @@
+env: standard
+runtime: nodejs14
+instance_class: F1
+service: frontend
+
+handlers:
+- url: /(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /.*
+  static_files: build/index.html
+  upload: build/index.html
+
+# default_expiration: "12h"
+env_variables:
+  NODE_ENV: "production"
+
+automatic_scaling:
+  min_instances: 0
+  max_idle_instances: 1
+  max_instances: 2
+  
+
+
