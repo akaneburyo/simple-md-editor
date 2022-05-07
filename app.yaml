@@ -1,7 +1,7 @@
 env: standard
 runtime: nodejs14
 instance_class: F1
-service: frontend
+service: default
 
 handlers:
 - url: /(.*\..+)$
