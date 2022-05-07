@@ -5,5 +5,6 @@ interface ImportMeta {
 }
 
 interface ImportMetaEnv {
-  // TODO
+  VITE_WS_HOST: string
+  VITE_WS_PORT: string
 }

@@ -21,6 +21,9 @@ import 'highlight.js/styles/ascetic.css'
 
 import '@/components/pages/Top/styles.css'
 
+// Constants
+import { WS } from '@/constants/config'
+
 const CustomCodeBlockExtension = CodeBlockLowlightExtension.extend<CodeBlockLowlightOptions>({
   content: 'text*',
   code: true,
@@ -36,7 +39,7 @@ const CustomCodeBlockExtension = CodeBlockLowlightExtension.extend<CodeBlockLowl
 })
 
 const doc = new Y.Doc()
-const wsProvider = new WebsocketProvider('ws://localhost:3001', 'editor', doc)
+const wsProvider = new WebsocketProvider(`ws://${WS.HOST}:${WS.PORT}`, 'editor', doc)
 
 wsProvider.on('status', (event: { status: any }) => {
   console.log(event.status)
