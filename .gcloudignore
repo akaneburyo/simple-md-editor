@@ -1,4 +1,7 @@
-.gcloudignore
-.gitignore
+*
 
-node_modules/
+# upload list
+!.
+!package.json
+!yarn.lock
+!build/**
