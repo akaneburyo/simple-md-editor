@@ -2,25 +2,22 @@ env: standard
 runtime: nodejs14
 instance_class: F1
 
-handlers:
-- url: /(.*\..+)$
-  static_files: build/\1
-  upload: build/(.*\..+)$
-- url: /.*
-  static_files: build/index.html
-  upload: build/index.html
+# handlers:
+# - url: /(.*\..+)$
+#   static_files: build/\1
+#   upload: build/(.*\..+)$
+# - url: /.*
+#   static_files: build/index.html
+#   upload: build/index.html
+
+entrypoint: npm run server:prod
 
 # default_expiration: "12h"
-env_variables:
-  NODE_ENV: "production"
 
 automatic_scaling:
   min_instances: 1
   max_idle_instances: 1
   max_instances: 2
-
-# manual_scaling:
-#   instances: 1
 
 network:
   session_affinity: true

@@ -6,3 +6,5 @@
 !yarn.lock
 !build/**
 !build/assets/**
+!node_modules/*/**
+!.env

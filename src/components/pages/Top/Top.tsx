@@ -39,11 +39,7 @@ const CustomCodeBlockExtension = CodeBlockLowlightExtension.extend<CodeBlockLowl
 })
 
 const doc = new Y.Doc()
-const wsProvider = new WebsocketProvider(`ws://${WS.HOST}:${WS.PORT}`, 'editor', doc)
-
-wsProvider.on('status', (event: { status: any }) => {
-  console.log(event.status)
-})
+const wsProvider = new WebsocketProvider(`${WS.HOST}:${WS.PORT}`, 'editor', doc)
 
 export const Top: VFC = () => {
   const editor = useEditor({
