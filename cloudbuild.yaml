@@ -5,13 +5,16 @@ steps:
       - |
         echo "$_ENV" > .env && \
         cat .env
-  # - name: 'bash'
-  #   args: ['cat', '.env']
-  # - name: node:14-slim
-  #   entrypoint: yarn
-  #   args: ["install"]
-  # - name: node:14-slim
-  #   entrypoint: yarn
-  #   args: ["build"]
+  - name: 'bash'
+    args: ['cat', '.env']
+  - name: node:14-slim
+    entrypoint: yarn
+    args: ["install"]
+  - name: node:14-slim
+    entrypoint: yarn
+    args: ["build"]
+  - name: gcr.io/$PROJECT_ID/firebase
+    # args: ['deploy', '--project=$_FIREBASE_PROJECT_ID', '--only=hosting']
+    args: ['deploy', '--only=hosting']
   - name: gcr.io/cloud-builders/gcloud
     args: ["app", "deploy", "app.yaml", "--project=$PROJECT_ID", "--quiet"]
