@@ -6,5 +6,4 @@ interface ImportMeta {
 
 interface ImportMetaEnv {
   VITE_WS_HOST: string
-  VITE_WS_PORT: string
 }

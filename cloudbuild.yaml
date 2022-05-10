@@ -13,8 +13,12 @@ steps:
   - name: node:14-slim
     entrypoint: yarn
     args: ["build"]
-  - name: gcr.io/$PROJECT_ID/firebase
-    # args: ['deploy', '--project=$_FIREBASE_PROJECT_ID', '--only=hosting']
-    args: ['deploy', '--only=hosting']
+  
+  # GCE Deploy
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['compute', 'scp', '--recurse', 'src', 'package.json', 'yarn.lock', 'root@$_GCE_INSTANCE_NAME:/usr/local/$PROJECT_ID/', '--zone', '$_GCE_INSTANCE_ZONE']
+
+  # GAE Deploy
   - name: gcr.io/cloud-builders/gcloud
     args: ["app", "deploy", "app.yaml", "--project=$PROJECT_ID", "--quiet"]

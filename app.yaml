@@ -2,15 +2,13 @@ env: standard
 runtime: nodejs14
 instance_class: F1
 
-# handlers:
-# - url: /(.*\..+)$
-#   static_files: build/\1
-#   upload: build/(.*\..+)$
-# - url: /.*
-#   static_files: build/index.html
-#   upload: build/index.html
-
-entrypoint: npm run server:prod
+handlers:
+- url: /(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+- url: /.*
+  static_files: build/index.html
+  upload: build/index.html
 
 # default_expiration: "12h"
 
