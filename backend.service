@@ -1,0 +1,12 @@
+[Service]
+WorkingDirectory=/usr/local/simple-md-editor/
+ExecStartPre=/usr/local/bin/yarn install
+ExecStart=/usr/local/bin/yarn server:prod
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=simple-md-editor
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
