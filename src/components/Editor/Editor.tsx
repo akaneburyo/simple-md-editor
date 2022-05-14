@@ -1,5 +1,6 @@
 import type { VFC } from 'react'
 import { useState, useCallback, useRef, useMemo } from 'react'
+import { useParams } from 'react-router-dom'
 
 // UI
 import { HStack, Box, StackDivider } from '@chakra-ui/react'
@@ -9,8 +10,8 @@ import * as Y from 'yjs'
 import { WebsocketProvider } from 'y-websocket'
 
 // Editor
-import { EditorContent as Editor, useEditor } from '@tiptap/react'
-import type { PureEditorContent, EditorEvents } from '@tiptap/react'
+import { EditorContent, useEditor } from '@tiptap/react'
+import type { EditorEvents } from '@tiptap/react'
 import DocumentExtension from '@tiptap/extension-document'
 import TextExtension from '@tiptap/extension-text'
 import CodeBlockLowlightExtension, {
@@ -23,7 +24,7 @@ import 'highlight.js/styles/ascetic.css'
 import '@/components/pages/Top/styles.css'
 
 // Preview
-import Preview from '@uiw/react-markdown-preview'
+import PreviewContent from '@uiw/react-markdown-preview'
 
 // Constants
 import { WS } from '@/constants/config'
@@ -46,12 +47,16 @@ const CustomCodeBlockExtension = CodeBlockLowlightExtension.extend<CodeBlockLowl
 
 const doc = new Y.Doc()
 
-export const Top: VFC = () => {
-  // TODO
-  const id = 'doc_id'
+type Params = {
+  documentId: string
+}
 
-  const _ = useMemo(() => new WebsocketProvider(`${WS.HOST}`, id, doc), [id])
-  const editorRef = useRef<PureEditorContent>(null)
+export const Editor: VFC = () => {
+  const params = useParams<Params>()
+
+  const _ = useMemo(() => {
+    if (params.documentId) return new WebsocketProvider(`${WS.HOST}`, params.documentId, doc)
+  }, [params.documentId])
 
   const [mdBody, setMdBody] = useState<string>()
   const onUpdate = useCallback((props: EditorEvents['update']) => {
@@ -88,10 +93,10 @@ export const Top: VFC = () => {
       divider={<StackDivider borderColor="gray.200" />}
     >
       <Box p={2} w="100%">
-        <Editor editor={editor} ref={editorRef} />
+        <EditorContent editor={editor} />
       </Box>
       <Box p={2} w="100%">
-        <Preview source={mdBody} />
+        <PreviewContent source={mdBody} />
       </Box>
     </HStack>
   )
