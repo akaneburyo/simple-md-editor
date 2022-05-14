@@ -21,6 +21,7 @@
     "@tiptap/extension-text": "^2.0.0-beta.15",
     "@tiptap/react": "^2.0.0-beta.109",
     "@tiptap/starter-kit": "^2.0.0-beta.184",
+    "@uiw/react-markdown-preview": "^4.0.9",
     "framer-motion": "^6",
     "highlight.js": "^11.5.1",
     "react": "^17.0.2",
