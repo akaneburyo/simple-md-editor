@@ -1,6 +1,8 @@
 import type { VFC } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+// Components
+import { Top } from '@/components/Top'
 import { Editor } from '@/components/Editor'
 
 export const PathParams = {
@@ -15,7 +17,7 @@ const Router: VFC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Editor />} />
+        <Route index element={<Top />} />
         <Route path={Path.editor} element={<Editor />} />
       </Routes>
     </BrowserRouter>
