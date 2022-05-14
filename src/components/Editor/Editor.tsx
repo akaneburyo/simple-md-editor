@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 
 // UI
 import { HStack, Box, StackDivider } from '@chakra-ui/react'
+import { Helmet } from 'react-helmet'
 
 // yjs
 import * as Y from 'yjs'
@@ -83,20 +84,29 @@ export const Editor: VFC = () => {
     []
   )
 
+  const pageTitle = useMemo(() => {
+    return mdBody?.match(/^# .*/)?.pop()?.replace('# ', '') || 'untitled'
+  }, [mdBody])
+
   return (
-    <HStack
-      h="100vh"
-      w="100vw"
-      spacing={0}
-      align="stretch"
-      divider={<StackDivider borderColor="gray.200" />}
-    >
-      <Box p={2} w="100%">
-        <EditorContent editor={editor} />
-      </Box>
-      <Box p={2} w="100%">
-        <PreviewContent source={mdBody} />
-      </Box>
-    </HStack>
+    <Box>
+      <Helmet>
+        <title>{`${pageTitle}: Markdown Editor`}</title>
+      </Helmet>
+
+      <HStack
+        w="100vw"
+        spacing={0}
+        align="stretch"
+        divider={<StackDivider borderColor="gray.200" />}
+      >
+        <Box p={2} w="100%">
+          <EditorContent editor={editor} />
+        </Box>
+        <Box p={2} w="100%">
+          <PreviewContent source={mdBody} />
+        </Box>
+      </HStack>
+    </Box>
   )
 }
