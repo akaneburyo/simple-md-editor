@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "server": "npx y-websocket",
-    "server:prod": "PORT=8081 npx y-websocket"
+    "server": "YPERSISTENCE=./dbDir npx y-websocket ",
+    "server:prod": "PORT=8081 YPERSISTENCE=./dbDir npx y-websocket"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.3",
