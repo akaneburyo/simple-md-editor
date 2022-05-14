@@ -1,5 +1,5 @@
 import type { VFC } from 'react'
-import { useState, useCallback, useRef, useMemo } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 
 // UI
@@ -20,8 +20,7 @@ import CodeBlockLowlightExtension, {
 import Collaboration from '@tiptap/extension-collaboration'
 import lowlight from 'lowlight'
 import 'highlight.js/styles/ascetic.css'
-
-import '@/components/pages/Top/styles.css'
+import '@/components/Editor/styles.css'
 
 // Preview
 import PreviewContent from '@uiw/react-markdown-preview'
