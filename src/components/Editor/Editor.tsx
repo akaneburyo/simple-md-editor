@@ -100,10 +100,10 @@ export const Editor: VFC = () => {
         align="stretch"
         divider={<StackDivider borderColor="gray.200" />}
       >
-        <Box p={2} w="100%">
+        <Box p={2} w="50%">
           <EditorContent editor={editor} />
         </Box>
-        <Box p={2} w="100%">
+        <Box p={2} w="50%">
           <PreviewContent source={mdBody} />
         </Box>
       </HStack>
